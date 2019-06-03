@@ -1,5 +1,9 @@
 # deep-docker
 
+## Requirement
+
+NVIDIA DRIVER VERSION: >=410.104
+
 ## Quick Start
 
 ensure `echo $USER` output your username first. If not, set it with `export USER="your user name"`
