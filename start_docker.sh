@@ -5,7 +5,7 @@ DOCKER_USER="${USER}"
 IMG="cheerss/deep-docker"
 SHELL=/usr/bin/zsh
 
-eval docker run -it -d \
+eval nvidia-docker run -it -d \
     -e DOCKER_USER=$USER \
     -e DOCKER_USER_ID=$(id -u) \
     -e DOCKER_GRP=$(id -g -n) \
@@ -24,7 +24,7 @@ docker cp $(dirname $0)/install-ohmyzsh.sh $DOCKER_NAME:/home/$DOCKER_USER
 eval docker exec -u $DOCKER_USER $DOCKER_NAME bash "~/install-ohmyzsh.sh"
 
 ## set pip source
-eval docker -u $DOCKER_USER $DOCKER_NAME pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+eval docker exec -u $DOCKER_USER $DOCKER_NAME pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 ## copy common configuration files
 docker cp -L ~/.vim $DOCKER_NAME:/home/$DOCKER_USER
