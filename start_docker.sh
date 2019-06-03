@@ -18,11 +18,15 @@ eval docker run -it -d \
    
 # docker exec $DOCKER_NAME service ssh start
 eval docker exec $DOCKER_NAME bash "/root/add_user.sh"
-# docker exec $DOCKER_NAME bash -c "su $DOCKER_USER"
 
 ## install oh my zsh
 docker cp $(dirname $0)/install-ohmyzsh.sh $DOCKER_NAME:/home/$DOCKER_USER
 eval docker exec -u $DOCKER_USER $DOCKER_NAME bash "~/install-ohmyzsh.sh"
+
+## set pip source
+eval docker -u $DOCKER_USER $DOCKER_NAME pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+## copy common configuration files
 docker cp -L ~/.vim $DOCKER_NAME:/home/$DOCKER_USER
 docker cp -L ~/.spf13-vim-3/ $DOCKER_NAME:/home/$DOCKER_USER
 # docker cp -L ~/.vimrc $DOCKER_NAME:/home/$DOCKER_USER

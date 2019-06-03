@@ -69,7 +69,8 @@ RUN apt install -y libsm6 libxext6 libxrender1
 # RUN echo /usr/local/opencv-3.3.1/lib > /etc/ld.so.conf.d/opencv-3.3.1.conf && ldconfig && export PKG_CONFIG_PATH=/usr/local/opencv-3.3.1/lib/pkgconfig
 
 ## set python3 to default
-RUN ln -s /usr/bin/pip3 /usr/bin/pip; rm /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
+RUN rm /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U && apt purge -y python3-pip
 
 
 RUN locale-gen en_US.utf8
