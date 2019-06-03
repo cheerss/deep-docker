@@ -1,5 +1,18 @@
 # deep-docker
 
+## Requirement
+
+NVIDIA DRIVER VERSION: >=410.104
+
+## Quick Start
+
+ensure `echo $USER` output your username first. If not, set it with `export USER="your user name"`
+
+```
+bash start_docker.sh # start a container named $USER_deep_docker
+bash enter_docker.sh # enter the docker
+```
+
 ## Base
 
 nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
