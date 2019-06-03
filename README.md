@@ -6,10 +6,11 @@ nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
 
 ## Deep Learning Libraries
 
-| Library | version | Note |
-| Tensorflow | 1.13.0 | GPU-version, with Tensorboard |
-| MXNet-cu100 | 1.4.1 | |
-| pytorch | 1.0.1.post2 | with TensorboardX |
+| Library     | version     | Note                          |
+| ----------- | ----------- | ----------------------------- |
+| Tensorflow  | 1.13.0      | GPU-version, with Tensorboard |
+| MXNet-cu100 | 1.4.1       |                               |
+| pytorch     | 1.0.1.post2 | with TensorboardX             |
 
 ## Other Python Libraries
 
