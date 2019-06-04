@@ -1,5 +1,5 @@
 
-VERSION="9.2-cudnn7-devel-ubuntu18.04"
+VERSION="9.0-cudnn7-devel-ubuntu16.04"
 DOCKER_NAME="${USER}_deep_docker"
 DOCKER_USER="${USER}"
 IMG="cheerss/deep-docker"
