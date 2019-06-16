@@ -8,79 +8,35 @@ RUN rm /etc/apt/sources.list.d/cuda.list && rm /etc/apt/sources.list.d/nvidia-ml
     && echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
     && apt-get install -y \
         cmake curl vim-nox zsh ssh htop software-properties-common libconfig-dev locales\
-        unzip zip git gdb bison flex sudo locales man automake libboost-all-dev python3-pip
+        unzip zip git gdb bison flex sudo locales man automake libboost-all-dev
 
-## get python3.7.3
-# WORKDIR /tmp
-# # dependency of python3.7.3
-# RUN apt install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev \
-#     tk-dev libgdbm-dev libc6-dev libbz2-dev zlib1g-dev libffi-dev
-# RUN wget -c -t10 https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz && \
-#     tar -zxvf Python-3.7.3.tgz && cd Python-3.7.3 && \
-#     ./configure && make -j altinstall && rm -rf /tmp/*
-       
-## set python3 to default
-RUN rm /usr/bin/python && ln -s /usr/local/bin/python3 /usr/local/bin/python
-RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple -U pip && \
-    apt purge -y python3-pip && apt -y autoremove
+## get python3.6.8 and pip
+RUN add-apt-repository ppa:deadsnakes/ppa && \
+    sed -i "s/http:\/\/ppa\.launchpad\.net/https:\/\/launchpad.proxy.ustclug.org/g" /etc/apt/sources.list.d/*.list && \
+    apt update && apt install -y python3.6 python3.6-dev python3-distutils-extra && \
+    wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py && python3.6 /tmp/get-pip.py && \
+    ln -s /usr/bin/python3.6 /usr/local/bin/python3 && \
+    ln -s /usr/bin/python3.6 /usr/local/bin/python
     
-# python common libraries, setup-tools must be installed first
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple setuptools 
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple wheel numpy scipy matplotlib \
-  ipython jupyter opencv-python==3.3.1.11 Pillow scikit-image six==1.11.0
-# needed by opencv-python
-RUN apt install -y libsm6 libxext6 libxrender1
+## install git-lfs
+WORKDIR /tmp
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt update && apt install -y git-lfs && git lfs install && apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 6B05F25D762E3157 && apt update
+    
+## python common libraries
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple setuptools && pip install -i https://pypi.tuna.tsinghua.edu.cn/simple wheel numpy scipy matplotlib \
+  ipython jupyter opencv-python==3.3.1.11 Pillow scikit-image six==1.11.0 && \
+
+# dependencies of opencv
+    apt update && apt install -y libsm6 libxext6 libxrender1 && \
 
 # python tensorflow
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow-gpu==1.12.2 tensorboard==1.12.2
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow-gpu==1.12.0 tensorboard==1.12.0 && \
 
 # pytorch-1.1.0
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple torch tensorboardX
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple torch tensorboardX && \
 
 # python mxnet
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mxnet-cu90
-
-# # install git-lfs
-# WORKDIR /tmp
-# RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get install -y git-lfs && git lfs install && apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-keys 6B05F25D762E3157 && apt update
-
-# # eigen3
-# WORKDIR /tmp/
-# RUN wget -c http://bitbucket.org/eigen/eigen/get/3.3.7.tar.gz && \
-#     tar -zxvf 3.3.7.tar.gz && cd eigen-eigen-323c052e1731 && mkdir build && cd build && \
-#     cmake -DCMAKE_INSTALL_PREFIX=/usr .. &&  make && make install && \
-#     cd / && rm -rf /tmp/*
-
-# # install deps for opencv
-# RUN apt-get update && apt-get install -y \
-#       libtbb2 \
-#       libtbb-dev \
-#       libjpeg-dev \
-#       libpng-dev \
-#       libtiff-dev \
-#       libjasper-dev \
-#       libdc1394-22-dev \
-#       libgtk2.0-dev && \
-#       apt-get clean autoclean && rm -rf /var/lib/apt/lists/* 
-
-# WORKDIR /tmp
-# RUN wget -c -t0 https://github.com/opencv/opencv/archive/3.3.1.zip -O /tmp/opencv-3.3.1.zip && \
-#     unzip opencv-3.3.1.zip && \
-#     mkdir /tmp/opencv-3.3.1/build && \
-#     cd /tmp/opencv-3.3.1/build && \
-#     cmake -D CMAKE_BUILD_TYPE=RELEASE \
-#       -D CMAKE_INSTALL_PREFIX=/usr/local/opencv-3.3.1 \
-#       -D WITH_CUDA=ON \
-#       -D ENABLE_FAST_MATH=1 \
-#       -D CUDA_FAST_MATH=1 \
-#       -D WITH_CUBLAS=1 \
-#       -D CUDA_ARCH_BIN="35 50 60 61 70" \
-#       -D WITH_IPP=0 \
-#       .. && \
-#     make -j && \
-#     make install -j && \
-#     cd / && rm -rf /tmp/*
-# RUN echo /usr/local/opencv-3.3.1/lib > /etc/ld.so.conf.d/opencv-3.3.1.conf && ldconfig && export PKG_CONFIG_PATH=/usr/local/opencv-3.3.1/lib/pkgconfig
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mxnet-cu90
 
 
 RUN locale-gen en_US.utf8
