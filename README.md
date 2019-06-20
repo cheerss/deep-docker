@@ -1,5 +1,7 @@
 # deep-docker
 
+The docker image has been released to [DockerHub](https://hub.docker.com/r/cheerss/deep-docker)
+
 ## Requirement
 
 NVIDIA DRIVER VERSION >= 384.81 (compatible with CUDA9.0 according to [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html))
