@@ -2,11 +2,13 @@
 
 ## Requirement
 
-NVIDIA DRIVER VERSION: >=410.104
+NVIDIA DRIVER VERSION >= 384.81 (compatible with CUDA9.0 according to [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html))
+
+nvidia-docker
 
 ## Quick Start
 
-ensure `echo $USER` output your username first. If not, set it with `export USER="your user name"`
+ensure `echo $USER` output your username first. If not, set it with `export USER="your_user_name"`
 
 ```
 bash start_docker.sh # start a container named $USER_deep_docker
@@ -15,15 +17,15 @@ bash enter_docker.sh # enter the docker
 
 ## Base
 
-nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 ## Deep Learning Libraries
 
 | Library     | version     | Note                          |
 | ----------- | ----------- | ----------------------------- |
-| Tensorflow  | 1.13.0      | GPU-version, with Tensorboard |
-| MXNet-cu100 | 1.4.1       |                               |
-| pytorch     | 1.0.1.post2 | with TensorboardX             |
+| Tensorflow  | 1.12.0      | GPU-version, with Tensorboard |
+| MXNet-cu90 | 1.4.1       |                               |
+| pytorch     | 1.1.0 | with TensorboardX             |
 
 ## Other Python Libraries
 
