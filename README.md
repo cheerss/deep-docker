@@ -28,6 +28,7 @@ nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 | Tensorflow  | 1.12.0      | GPU-version, with Tensorboard |
 | MXNet-cu90 | 1.4.1       |                               |
 | pytorch     | 1.1.0 | with TensorboardX             |
+| caffe-ssd     | 1.0.0 | GPU version             |
 
 ## Other Python Libraries
 
