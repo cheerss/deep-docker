@@ -1,5 +1,5 @@
 
-VERSION="9.0-cudnn7-devel-ubuntu16.04"
+VERSION="tmp-caffe"
 DOCKER_NAME="${USER}_deep_docker"
 DOCKER_USER="${USER}"
 IMG="cheerss/deep-docker"
