@@ -1,6 +1,6 @@
 
 VERSION="tmp-caffe"
-DOCKER_NAME="${USER}_deep_docker"
+DOCKER_NAME="${USER}_deep_docker_${VERSION}"
 DOCKER_USER="${USER}"
 IMG="cheerss/deep-docker"
 SHELL=/usr/bin/zsh
@@ -11,8 +11,8 @@ eval nvidia-docker run -it -d \
     -e DOCKER_GRP=$(id -g -n) \
     -e DOCKER_GRP_ID=$(id -g) \
     -v /private:/private \
-    -p 6006:6006 \
-    -p 8890:8890 \
+    -v /data:/data \
+    -p 8889:8889 \
     -v /home/$USER:/$USER \
     -v /nfs:/nfs \
     -w /$USER \
