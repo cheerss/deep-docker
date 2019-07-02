@@ -11,6 +11,7 @@ eval nvidia-docker run -it -d \
     -e DOCKER_GRP=$(id -g -n) \
     -e DOCKER_GRP_ID=$(id -g) \
     -v /private:/private \
+    -v /data:/data \
     -v /home/$USER:/$USER \
     -w /$USER \
     --name $DOCKER_NAME $IMG:$VERSION \
