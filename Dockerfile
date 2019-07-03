@@ -33,14 +33,11 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple setuptools && pip in
     pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow-gpu==1.12.0 tensorboard==1.12.0 && \
 
 # pytorch-1.1.0
-    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple torch tensorboardX && \
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple torch torchvision tensorboardX && \
 
 # python mxnet
     pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mxnet-cu90
     
-## install caffe-SSD
-RUN apt-get install libhdf5-dev libgflags-dev libgoogle-glog-dev liblmdb-dev libboost-all-dev protobuf-compiler libprotobuf-dev libblas-dev libatlas-base-dev libopenblas-dev libleveldb-dev libsnappy-dev
-
 
 RUN locale-gen en_US.utf8
 ENV LC_ALL=en_US.utf8
