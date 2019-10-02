@@ -14,6 +14,7 @@ eval nvidia-docker run -it -d \
     -v /data:/data \
     -p 6116:6116 \
     -p 8891:8891 \
+    --ipc host \
     -v /home/$USER:/$USER \
     -w /$USER \
     --name $DOCKER_NAME $IMG:$VERSION \
