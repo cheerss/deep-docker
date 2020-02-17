@@ -5,7 +5,7 @@ DOCKER_USER="${USER}"
 IMG="cheerss/deep-docker"
 SHELL=/usr/bin/zsh
 
-eval /usr/bin/docker run -it -d \
+eval nvidia-docker run -it -d \
     -e DOCKER_USER=$USER \
     -e DOCKER_USER_ID=$(id -u) \
     -e DOCKER_GRP=$(id -g -n) \
