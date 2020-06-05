@@ -1,6 +1,6 @@
 
-VERSION="9.0-cudnn7-devel-ubuntu16.04"
-DOCKER_NAME="${USER}_deep_docker"
+VERSION="10.0-cudnn7-devel-ubuntu18.04"
+DOCKER_NAME="${USER}_deep_docker_18.04"
 DOCKER_USER="${USER}"
 IMG="cheerss/deep-docker"
 SHELL=/usr/bin/zsh
@@ -12,8 +12,8 @@ eval /usr/bin/docker run -it -d \
     -e DOCKER_GRP_ID=$(id -g) \
     -v /private:/private \
     -v /data:/data \
-    -p 6116:6116 \
-    -p 8891:8891 \
+    -p 6016:6016 \
+    -p 8892:8892 \
     --ipc host \
     -v /home/$USER:/$USER \
     -w /$USER \

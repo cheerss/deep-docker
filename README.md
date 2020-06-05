@@ -4,7 +4,7 @@ The docker image has been released to [DockerHub](https://hub.docker.com/r/cheer
 
 ## Requirement
 
-NVIDIA DRIVER VERSION >= 384.81 (compatible with CUDA9.0 according to [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html))
+NVIDIA DRIVER VERSION >= 418.48 (compatible with CUDA10.0 according to [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html))
 
 nvidia-docker
 
@@ -25,14 +25,15 @@ nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 | Library     | version     | Note                          |
 | ----------- | ----------- | ----------------------------- |
-| Tensorflow  | 1.12.0      | GPU-version, with Tensorboard |
-| MXNet-cu90 | 1.4.1       |                               |
-| pytorch     | 1.1.0 | with TensorboardX             |
+| Tensorflow  | 2.2.0      | GPU-version, with Tensorboard  |
+| pytorch     | 1.5.0 | with TensorboardX, torchvision      |
+| apex        | 0.1 |         |
+| nvidia-dali     | 0.21.0 |      |
 
 ## Other Python Libraries
 
-numpy scipy scikit-image Pillow opencv-3.3.1 matplotlib ipython jupyter
+numpy scipy scikit-image Pillow opencv-3.3.1 matplotlib ipython jupyter pandas
 
 ## Other Libraries
 
-git-lfs cmake automake oh-my-zsh(install during starting a container)
+cmake automake oh-my-zsh(install during starting a container)
