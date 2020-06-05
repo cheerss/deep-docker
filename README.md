@@ -19,7 +19,7 @@ bash enter_docker.sh # enter the docker
 
 ## Base
 
-nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
 
 ## Deep Learning Libraries
 
