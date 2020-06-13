@@ -34,6 +34,9 @@ docker cp -L ~/.ssh $DOCKER_NAME:/home/$DOCKER_USER
 ## install oh my zsh
 docker cp $(dirname $0)/install-ohmyzsh.sh $DOCKER_NAME:/home/$DOCKER_USER
 eval docker exec -u $DOCKER_USER $DOCKER_NAME bash "~/install-ohmyzsh.sh"
+eval docker exec -u $DOCKER_USER $DOCKER_NAME ln -s "~/.spf13-vim-3/.vimrc" "~/.vimrc"
+eval docker exec -u $DOCKER_USER $DOCKER_NAME ln -s "~/.spf13-vim-3/.vimrc.before" "~/.vimrc.before"
+eval docker exec -u $DOCKER_USER $DOCKER_NAME ln -s "~/.spf13-vim-3/.vimrc.bundles" "~/.vimrc.bundles"
 
 ## set pip source
 eval docker exec -u $DOCKER_USER $DOCKER_NAME pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
